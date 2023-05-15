@@ -129,18 +129,22 @@ void Game::update(sf::Event t_event)
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			{
 				rat.moveLeft();
+				rat.animate();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 			{
 				rat.moveRight();
+				rat.animate();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 			{
 				rat.moveUp();
+				rat.animate();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			{
 				rat.moveDown();
+				rat.animate();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			{
@@ -227,6 +231,7 @@ void Game::draw()
 	}
 	else if (gameMode == GAME_PLAY)
 	{//game play
+		window.draw(m_gameplayBackground);
 		m_message.setString("Game Play");
 		m_playerLives.setString("Lives: " + std::to_string(rat.getLives()));
 		window.draw(m_message);  // write message to the screen
@@ -304,6 +309,12 @@ void Game::setupBackground()
 	}
 	m_chooseCharacter.setTexture(m_chooseCharacterTexture);
 
+	if (!m_gameplayTexture.loadFromFile("ASSETS/IMAGES/background.png"))
+	{
+		std::cout << "error with image file";
+	}
+	m_gameplayBackground.setTexture(m_gameplayTexture);
+
 	if (!m_endScreenTexture.loadFromFile("ASSETS/IMAGES/background stars.png"))
 	{
 		std::cout << "error with image file";
@@ -374,6 +385,7 @@ void Game::moveGuards()
 	for (int i = 0; i < MAX_GUARDS; i++)
 	{
 		guards[i].moveGurad();
+		guards[i].animate();
 	}
 }
 

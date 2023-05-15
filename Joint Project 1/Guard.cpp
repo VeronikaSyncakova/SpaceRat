@@ -58,7 +58,7 @@ void Guard::moveGurad()
 			{//reaches boundary and switches to another direction
 				m_position.x = 950;
 				m_side = LEFT;
-				m_guardSprite.setTextureRect(sf::IntRect(0, GUARD_HEIGHT, GUARD_WIDTH, GUARD_HEIGHT));
+				//m_guardSprite.setTextureRect(sf::IntRect(0, GUARD_HEIGHT, GUARD_WIDTH, GUARD_HEIGHT));
 			}
 		}
 		if (m_side == LEFT)
@@ -71,7 +71,7 @@ void Guard::moveGurad()
 			{
 				m_position.x = 550;
 				m_side = RIGHT;
-				m_guardSprite.setTextureRect(sf::IntRect(0, 2 * GUARD_HEIGHT, GUARD_WIDTH, GUARD_HEIGHT));
+				//m_guardSprite.setTextureRect(sf::IntRect(0, 2 * GUARD_HEIGHT, GUARD_WIDTH, GUARD_HEIGHT));
 			}
 		}
 	}
@@ -87,7 +87,7 @@ void Guard::moveGurad()
 			{//reaches boundary and switches to another direction
 				m_position.y = 600;
 				m_side = UP;
-				m_guardSprite.setTextureRect(sf::IntRect(0, 3 * GUARD_HEIGHT, GUARD_WIDTH, GUARD_HEIGHT));
+				//m_guardSprite.setTextureRect(sf::IntRect(0, 3 * GUARD_HEIGHT, GUARD_WIDTH, GUARD_HEIGHT));
 			}
 		}
 		if (m_side == UP)
@@ -100,7 +100,7 @@ void Guard::moveGurad()
 			{//reaches boundary and switches to another direction
 				m_position.y = 200;
 				m_side = DOWN;
-				m_guardSprite.setTextureRect(sf::IntRect(0, 0, GUARD_WIDTH, GUARD_HEIGHT));
+				//m_guardSprite.setTextureRect(sf::IntRect(0, 0, GUARD_WIDTH, GUARD_HEIGHT));
 			}
 		}
 	}
@@ -115,4 +115,65 @@ int Guard::getType()
 sf::Vector2f Guard::getPosition()
 {
 	return m_position;
+}
+
+void Guard::animate()
+{
+	m_frameCounter += m_frameIncrement;
+	m_frame = static_cast<int>(m_frameCounter);
+	if (m_side == NORTH)
+	{
+		if (m_frame > 8 - 1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 8.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_guardSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 192, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+		}
+	}
+
+	if (m_side == SOUTH)
+	{
+		if (m_frame > 8 - 1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 8.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_guardSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 0, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+		}
+	}
+
+	if (m_side == WEST)
+	{
+		if (m_frame > 10 - 1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 10.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_guardSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 64, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+		}
+	}
+
+	if (m_side == EAST)
+	{
+		if (m_frame > 10 - 1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 10.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_guardSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 128, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+		}
+	}
 }

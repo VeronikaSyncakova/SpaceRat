@@ -17,6 +17,11 @@ class Player
 	int m_lives = 3; //lives
 	bool m_alive; //alive or not
 
+	float m_frameCounter = 0.0f; //which frame
+	float m_frameIncrement = 0.3f; // speed of animation
+	int m_frame = 0; //chooses frame
+	int m_currentFrame{ -1 };
+
 
 public:
 	Player();
@@ -36,4 +41,6 @@ public:
 	void setAlive(); //set if alive or dead
 	void reset(); //resets player
 	void chooseCharacter(int t_playerSelect);
+
+	void animate();
 };

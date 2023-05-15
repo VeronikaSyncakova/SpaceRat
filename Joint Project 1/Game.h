@@ -49,6 +49,8 @@ class Game
 	sf::Texture m_spriteTexture; //texture to display sprite to choose character
 	sf::Sprite m_sprite; //display image 1 to choose character
 	sf::Sprite m_sprite2; // display image 2 to choose character
+	sf::Texture m_gameplayTexture; //gameplay background texture
+	sf::Sprite m_gameplayBackground; //gameplay background
 
 public:
 	sf::Font m_font;  // font for writing text

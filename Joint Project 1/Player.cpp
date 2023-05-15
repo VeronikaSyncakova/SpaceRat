@@ -44,7 +44,7 @@ void Player::moveUp()
 {//moves up
 	m_position.y-=m_speed;
 	m_direction = NORTH;
-	m_characterSprite.setTextureRect(sf::IntRect(0, 0, 48, 64));//north facing
+	//m_characterSprite.setTextureRect(sf::IntRect(0, 0, 48, 64));//north facing
 	if (m_position.y <= CHARACTER_HEIGHT/2)
 	{//screen boundary check
 		m_position.y = CHARACTER_HEIGHT / 2;
@@ -56,7 +56,7 @@ void Player::moveDown()
 {//moves down
 	m_position.y+=m_speed;
 	m_direction = SOUTH;
-	m_characterSprite.setTextureRect(sf::IntRect(0, 128, 48, 64));//south facing
+	//m_characterSprite.setTextureRect(sf::IntRect(0, 128, 48, 64));//south facing
 	if (m_position.y >= SCREEN_HEIGHT - CHARACTER_HEIGHT/2)
 	{ //screen boundary check
 		m_position.y = SCREEN_HEIGHT - CHARACTER_HEIGHT/2;
@@ -68,7 +68,7 @@ void Player::moveLeft()
 {//moves left
 	m_position.x-=m_speed;
 	m_direction = WEST;
-	m_characterSprite.setTextureRect(sf::IntRect(0, 192, 48, 64));//west facing
+	//m_characterSprite.setTextureRect(sf::IntRect(0, 192, 48, 64));//west facing
 	if (m_position.x <= CHARACTER_WIDTH/2)
 	{ //screen boundary check
 		m_position.x = CHARACTER_WIDTH / 2;
@@ -80,7 +80,7 @@ void Player::moveRight()
 {//moves right
 	m_position.x+=m_speed;
 	m_direction = EAST;
-	m_characterSprite.setTextureRect(sf::IntRect(0, 64, 48, 64));//east facing
+	//m_characterSprite.setTextureRect(sf::IntRect(0, 64, 48, 64));//east facing
 	if (m_position.x >= SCREEN_WIDTH - CHARACTER_WIDTH/2)
 	{ //screen boundary check
 		m_position.x = SCREEN_WIDTH - CHARACTER_WIDTH/2;
@@ -260,6 +260,67 @@ void Player::chooseCharacter(int t_playerSelect)
 	{
 		m_characterSprite.setColor(sf::Color::White);
 
+	}
+}
+
+void Player::animate()
+{
+	m_frameCounter += m_frameIncrement;
+	m_frame = static_cast<int>(m_frameCounter);
+	if (m_direction == NORTH )
+	{
+		if (m_frame > 8-1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 8.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_characterSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 0, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+		}
+	}
+
+	if (m_direction == SOUTH)
+	{
+		if (m_frame > 8-1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 8.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_characterSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 128, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+		}
+	}
+
+	if (m_direction == WEST)
+	{
+		if (m_frame > 9-1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 9.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_characterSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 192, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+		}
+	}
+
+	if (m_direction == EAST)
+	{
+		if (m_frame > 9-1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 9.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_characterSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 64, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+		}
 	}
 }
 
