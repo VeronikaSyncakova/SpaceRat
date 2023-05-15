@@ -157,6 +157,8 @@ void Game::update(sf::Event t_event)
 		rat.checkGuard(guards); //collision check between guards and player
 		moveGuards();
 		cat.move(rat);
+		cat.animate();
+		cheese.animate();
 		rat.checkCheese(cheese.getBody()); //collision check between cheese and player
 		if (poison.getShooting())
 		{ //shooting

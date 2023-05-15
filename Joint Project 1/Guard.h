@@ -13,7 +13,7 @@ class Guard
 	int m_speed{ 1 }; //seed of movement
 
 	float m_frameCounter = 0.0f; //which frame
-	float m_frameIncrement = 0.3f; // speed of animation
+	float m_frameIncrement = 0.2f; // speed of animation
 	int m_frame = 0; //chooses frame
 	int m_currentFrame{ -1 };
 

@@ -12,8 +12,17 @@ class Cheese
 
 	sf::Texture m_texture; 
 	sf::Sprite m_sprite; 
+
+	float m_frameCounter = 0.0f; //which frame
+	float m_frameIncrement = 0.15f; // speed of animation
+	int m_frame = 0; //chooses frame
+	int m_currentFrame{ -1 };
+	int m_row = 0;
+	int m_col = 0;
+
 public:
 	Cheese();
 	sf::RectangleShape getBody();
 	sf::Sprite getSprite();
+	void animate();
 };

@@ -121,7 +121,7 @@ void Guard::animate()
 {
 	m_frameCounter += m_frameIncrement;
 	m_frame = static_cast<int>(m_frameCounter);
-	if (m_side == NORTH)
+	if (m_side == UP)
 	{
 		if (m_frame > 8 - 1)
 		{
@@ -131,11 +131,11 @@ void Guard::animate()
 		if (m_frame != m_currentFrame)
 		{
 			m_currentFrame = m_frame;
-			m_guardSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 192, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+			m_guardSprite.setTextureRect(sf::IntRect(m_frame * GUARD_WIDTH, 192, GUARD_WIDTH, GUARD_HEIGHT));
 		}
 	}
 
-	if (m_side == SOUTH)
+	if (m_side == DOWN)
 	{
 		if (m_frame > 8 - 1)
 		{
@@ -145,11 +145,11 @@ void Guard::animate()
 		if (m_frame != m_currentFrame)
 		{
 			m_currentFrame = m_frame;
-			m_guardSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 0, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+			m_guardSprite.setTextureRect(sf::IntRect(m_frame * GUARD_WIDTH, 0, GUARD_WIDTH, GUARD_HEIGHT));
 		}
 	}
 
-	if (m_side == WEST)
+	if (m_side == LEFT)
 	{
 		if (m_frame > 10 - 1)
 		{
@@ -159,11 +159,11 @@ void Guard::animate()
 		if (m_frame != m_currentFrame)
 		{
 			m_currentFrame = m_frame;
-			m_guardSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 64, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+			m_guardSprite.setTextureRect(sf::IntRect(m_frame * GUARD_WIDTH, 64, GUARD_WIDTH, GUARD_HEIGHT));
 		}
 	}
 
-	if (m_side == EAST)
+	if (m_side == RIGHT)
 	{
 		if (m_frame > 10 - 1)
 		{
@@ -173,7 +173,7 @@ void Guard::animate()
 		if (m_frame != m_currentFrame)
 		{
 			m_currentFrame = m_frame;
-			m_guardSprite.setTextureRect(sf::IntRect(m_frame * CHARACTER_WIDTH, 128, CHARACTER_WIDTH, CHARACTER_HEIGHT));
+			m_guardSprite.setTextureRect(sf::IntRect(m_frame * GUARD_WIDTH, 128, GUARD_WIDTH, GUARD_HEIGHT));
 		}
 	}
 }

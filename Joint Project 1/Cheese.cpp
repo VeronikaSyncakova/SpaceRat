@@ -26,3 +26,21 @@ sf::Sprite Cheese::getSprite()
 {
 	return m_sprite;
 }
+
+void Cheese::animate()
+{
+	m_frameCounter += m_frameIncrement;
+	m_frame = static_cast<int>(m_frameCounter);
+	if (m_frame > 12 - 1)
+	{
+		m_frame = 0;
+		m_frameCounter -= 12.0f;
+	}
+	if (m_frame != m_currentFrame)
+	{
+		m_currentFrame = m_frame;
+		m_col = m_frame % 4;
+		m_row = m_frame / 4;
+		m_sprite.setTextureRect(sf::IntRect(m_col * 50, m_row * 50, 50, 50));
+	}
+}

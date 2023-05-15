@@ -7,9 +7,9 @@ Cat::Cat()
 		std::cout << "error with image file";
 	}
 	m_catSprite.setTexture(m_catTexture);
-	m_catSprite.setTextureRect(sf::IntRect(0, GUARD_HEIGHT, GUARD_WIDTH, GUARD_HEIGHT));
-	m_catSprite.setOrigin(GUARD_WIDTH / 2, GUARD_HEIGHT / 2);
-	m_position = { SCREEN_WIDTH - GUARD_WIDTH,SCREEN_HEIGHT - GUARD_HEIGHT }; //right bottom corner
+	m_catSprite.setTextureRect(sf::IntRect(0, CAT_HEIGHT, CAT_WIDTH, CAT_HEIGHT));
+	m_catSprite.setOrigin(CAT_WIDTH / 2.0f, CAT_HEIGHT / 2.0f);
+	m_position = { SCREEN_WIDTH - CAT_WIDTH,SCREEN_HEIGHT - CAT_HEIGHT }; //right bottom corner
 	m_catSprite.setPosition(m_position);
 }
 
@@ -30,6 +30,15 @@ void Cat::move(Player& t_player)
 	m_position += displacement;
 	m_catSprite.setPosition(m_position);
 
+	if (displacement.y > 0)
+	{
+		m_direction = DOWN;
+	}
+	else
+	{
+		m_direction = UP;
+	}
+
 	if (m_catSprite.getGlobalBounds().intersects(t_player.getSprite().getGlobalBounds()))
 	{//collision between cat and player
 		t_player.setAlive();
@@ -43,19 +52,52 @@ void Cat::reset(Player t_player)
 
 	if (playerPosition == sf::Vector2f{CHARACTER_WIDTH, SCREEN_HEIGHT - CHARACTER_HEIGHT})
 	{ //left top corner
-		m_position = sf::Vector2f{ GUARD_WIDTH,GUARD_HEIGHT };
+		m_position = sf::Vector2f{ CAT_WIDTH,CAT_HEIGHT };
 	}
 	else if (playerPosition== sf::Vector2f{ CHARACTER_WIDTH,CHARACTER_HEIGHT })
 	{//right top corner 
-		m_position = sf::Vector2f{ SCREEN_WIDTH - GUARD_WIDTH,GUARD_HEIGHT };
+		m_position = sf::Vector2f{ SCREEN_WIDTH - CAT_WIDTH,CAT_HEIGHT };
 	}
 	else if (playerPosition== sf::Vector2f{ SCREEN_WIDTH - CHARACTER_WIDTH,CHARACTER_HEIGHT })
 	{//right bottom corner
-		m_position = sf::Vector2f{ SCREEN_WIDTH - GUARD_WIDTH,SCREEN_HEIGHT - GUARD_HEIGHT };
+		m_position = sf::Vector2f{ SCREEN_WIDTH - CAT_WIDTH,SCREEN_HEIGHT - CAT_HEIGHT };
 	}
 	else if (playerPosition== sf::Vector2f{ SCREEN_WIDTH - CHARACTER_WIDTH,SCREEN_HEIGHT - CHARACTER_HEIGHT })
 	{//left bottom corner
-		m_position = sf::Vector2f{ GUARD_WIDTH ,SCREEN_HEIGHT - GUARD_HEIGHT };
+		m_position = sf::Vector2f{ CAT_WIDTH ,SCREEN_HEIGHT - CAT_HEIGHT };
 	}
 	m_catSprite.setPosition(m_position);
+}
+
+void Cat::animate()
+{
+	m_frameCounter += m_frameIncrement;
+	m_frame = static_cast<int>(m_frameCounter);
+	if (m_direction == UP)
+	{
+		if (m_frame > 8 - 1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 8.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_catSprite.setTextureRect(sf::IntRect(m_frame * CAT_WIDTH, 192, CAT_WIDTH, CAT_HEIGHT));
+		}
+	}
+
+	if (m_direction == DOWN)
+	{
+		if (m_frame > 8 - 1)
+		{
+			m_frame = 0;
+			m_frameCounter -= 8.0f;
+		}
+		if (m_frame != m_currentFrame)
+		{
+			m_currentFrame = m_frame;
+			m_catSprite.setTextureRect(sf::IntRect(m_frame * CAT_WIDTH, 0, CAT_WIDTH, CAT_HEIGHT));
+		}
+	}
 }
