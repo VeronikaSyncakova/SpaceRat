@@ -6,7 +6,7 @@
 
 void Player::setupSprite()
 {
-	if (!m_characterTexture.loadFromFile("ASSETS/IMAGES/character.png"))
+	if (!m_characterTexture.loadFromFile("ASSETS/IMAGES/mouse.png"))
 	{
 		std::cout << "error with image file";
 	}

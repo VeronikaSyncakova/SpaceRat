@@ -2,7 +2,7 @@
 
 Cat::Cat()
 {//constructor
-	if (!m_catTexture.loadFromFile("ASSETS/IMAGES/enemy2.png"))
+	if (!m_catTexture.loadFromFile("ASSETS/IMAGES/cat.png"))
 	{
 		std::cout << "error with image file";
 	}

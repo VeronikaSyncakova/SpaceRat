@@ -3,7 +3,7 @@
 void Guard::setupGuard(int t_type)
 {
 	m_type = t_type + 1;
-	if (!m_guardTexture.loadFromFile("ASSETS/IMAGES/enemy2.png"))
+	if (!m_guardTexture.loadFromFile("ASSETS/IMAGES/spaceman.png"))
 	{
 		std::cout << "error with image file";
 	}

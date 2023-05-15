@@ -316,7 +316,7 @@ void Game::setupBackground()
 	}
 	m_restartButton.setTexture(m_restartTexture);
 
-	if (!m_spriteTexture.loadFromFile("ASSETS/IMAGES/character.png"))
+	if (!m_spriteTexture.loadFromFile("ASSETS/IMAGES/mouse.png"))
 	{
 		std::cout << "error with image file";
 	}
